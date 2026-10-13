@@ -1,0 +1,373 @@
+:root {
+  color-scheme: dark;
+  font-family: "DM Sans", sans-serif;
+  background: #101625;
+  color: #f5f4ed;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --muted: #a0a7b7;
+  --gold: #ffc857;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 32px 20px;
+  background:
+    radial-gradient(ellipse at 50% -15%, rgb(56 76 112 / 34%), transparent 58%),
+    #101625;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+}
+
+.game-shell {
+  width: min(100%, 1060px);
+  margin: 0 auto;
+}
+
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: #91a0bb;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+h1,
+.fighter-label strong,
+.round-message span {
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(36px, 6vw, 53px);
+  font-weight: 900;
+  letter-spacing: -.035em;
+  line-height: .95;
+}
+
+h1 span {
+  color: var(--gold);
+}
+
+.reset-button {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border: 1px solid #354158;
+  border-radius: 8px;
+  padding: 10px 13px;
+  background: #1a2334;
+  color: #d5dbea;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.reset-button:hover {
+  border-color: #62718c;
+  background: #222e43;
+}
+
+.reset-button span {
+  color: var(--gold);
+  font-size: 18px;
+  line-height: 12px;
+}
+
+.arena-frame {
+  overflow: hidden;
+  border: 1px solid #313c51;
+  border-radius: 12px;
+  background: #171f2e;
+  box-shadow: 0 24px 70px rgb(0 0 0 / 34%);
+}
+
+.hud {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(95px, 1fr) minmax(100px, 3fr) 40px minmax(100px, 3fr) minmax(95px, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 76px;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #202a3d, #1a2231 50%, #202a3d);
+}
+
+.fighter-label {
+  display: grid;
+  gap: 2px;
+}
+
+.fighter-label strong {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: .07em;
+}
+
+.fighter-label span {
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.fighter-label--right {
+  text-align: right;
+}
+
+.fighter-label--left strong {
+  color: #65dddc;
+}
+
+.fighter-label--right strong {
+  color: #ffad62;
+}
+
+.health-track {
+  height: 15px;
+  overflow: hidden;
+  border: 2px solid #3e4b61;
+  border-radius: 4px;
+  background: #111725;
+  transform: skewX(-12deg);
+}
+
+.health-fill {
+  width: 100%;
+  height: 100%;
+  transition: width .18s ease;
+}
+
+.health-fill--left {
+  background: linear-gradient(90deg, #44c9c9, #91eee1);
+}
+
+.health-fill--right {
+  margin-left: auto;
+  background: linear-gradient(90deg, #ff9860, #ffd06a);
+}
+
+.round-mark {
+  color: #8c95a6;
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  font-style: italic;
+  text-align: center;
+}
+
+.canvas-wrap {
+  position: relative;
+  background: #232c3d;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.round-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgb(13 19 30 / 23%), rgb(13 19 30 / 10%), rgb(13 19 30 / 23%));
+  pointer-events: none;
+  text-align: center;
+  transition: opacity .2s ease;
+}
+
+.round-message.is-hidden {
+  opacity: 0;
+}
+
+.round-message span {
+  color: #fff2ce;
+  font-size: clamp(42px, 9vw, 76px);
+  font-weight: 900;
+  letter-spacing: .08em;
+  line-height: .95;
+  text-shadow: 0 4px 24px rgb(0 0 0 / 55%);
+}
+
+.round-message small {
+  margin-top: 10px;
+  color: #e1e7ef;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px #111;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 21px 2px 15px;
+}
+
+.control-copy h2 {
+  margin: 0 0 7px;
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.control-copy p {
+  margin: 0;
+  color: #abb3c1;
+  font-size: 12px;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 20px;
+  border: 1px solid #3b465b;
+  border-radius: 4px;
+  padding: 3px 5px;
+  background: #1a2334;
+  color: #f4f1e8;
+  font: 700 10px "DM Sans", sans-serif;
+  text-align: center;
+}
+
+.control-divider {
+  margin: 0 7px;
+  color: #576176;
+}
+
+.touch-controls,
+.touch-movement {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.touch-controls button {
+  min-width: 42px;
+  height: 38px;
+  border: 1px solid #3b465b;
+  border-radius: 7px;
+  background: #1a2334;
+  color: #dbe1ea;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+
+.touch-controls button:active {
+  border-color: #65dddc;
+  background: #26394a;
+}
+
+.touch-controls .strike-button {
+  width: auto;
+  margin-left: 5px;
+  padding: 0 14px;
+  border-color: #a75d41;
+  background: #552f31;
+  color: #ffd8a9;
+  font-size: 11px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.touch-controls .strike-button:active {
+  border-color: #ffad62;
+  background: #75413d;
+}
+
+footer {
+  padding: 10px 0;
+  color: #707b8f;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 620px) {
+  body {
+    padding: 20px 12px;
+  }
+
+  .masthead {
+    margin-bottom: 14px;
+  }
+
+  .hud {
+    grid-template-columns: 74px minmax(48px, 1fr) 26px minmax(48px, 1fr) 74px;
+    gap: 6px;
+    min-height: 65px;
+    padding: 9px;
+  }
+
+  .fighter-label strong {
+    font-size: 17px;
+  }
+
+  .fighter-label span {
+    overflow: hidden;
+    font-size: 8px;
+    text-overflow: ellipsis;
+  }
+
+  .health-track {
+    height: 12px;
+  }
+
+  .controls {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .eyebrow {
+    font-size: 9px;
+  }
+
+  .reset-button {
+    gap: 6px;
+    padding: 8px;
+    font-size: 10px;
+  }
+
+  .hud {
+    grid-template-columns: 63px minmax(30px, 1fr) 22px minmax(30px, 1fr) 63px;
+  }
+
+  .fighter-label strong {
+    font-size: 15px;
+  }
+}

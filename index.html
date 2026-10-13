@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101625">
+    <title>Skyline Duel</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="masthead">
+        <div>
+          <p class="eyebrow">A one-round arcade prototype</p>
+          <h1>Skyline <span>Duel</span></h1>
+        </div>
+        <button class="reset-button" id="reset" type="button">Restart round <span aria-hidden="true">↻</span></button>
+      </header>
+
+      <section class="arena-frame" aria-label="Fighting game">
+        <div class="hud">
+          <div class="fighter-label fighter-label--left">
+            <strong>ASTRA</strong>
+            <span>Skyline runner</span>
+          </div>
+          <div class="health-track" aria-label="Astra health">
+            <div class="health-fill health-fill--left" id="player-health"></div>
+          </div>
+          <div class="round-mark" aria-hidden="true">VS</div>
+          <div class="health-track health-track--right" aria-label="Bront health">
+            <div class="health-fill health-fill--right" id="cpu-health"></div>
+          </div>
+          <div class="fighter-label fighter-label--right">
+            <strong>BRONT</strong>
+            <span>Cloud-forge guard</span>
+          </div>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="arena" width="960" height="540" aria-label="Astra fights Bront in a rooftop arena"></canvas>
+          <div class="round-message" id="round-message" aria-live="polite">
+            <span id="message-title">READY?</span>
+            <small id="message-detail">Press any move to begin</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Game controls">
+        <div class="control-copy">
+          <h2>Take your stance</h2>
+          <p><kbd>A</kbd> <kbd>D</kbd> move <span class="control-divider">·</span> <kbd>W</kbd> jump <span class="control-divider">·</span> <kbd>F</kbd> strike</p>
+        </div>
+        <div class="touch-controls" aria-label="Touch controls">
+          <div class="touch-movement">
+            <button type="button" data-key="a" aria-label="Move left">←</button>
+            <button type="button" data-key="d" aria-label="Move right">→</button>
+            <button type="button" data-key="w" aria-label="Jump">↑</button>
+          </div>
+          <button class="strike-button" type="button" data-key="f" aria-label="Strike">Strike</button>
+        </div>
+      </section>
+      <footer>Original characters and visuals · Best played with a keyboard</footer>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>
